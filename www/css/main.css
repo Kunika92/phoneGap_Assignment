@@ -1,0 +1,43 @@
+		.contactList {
+			padding-top: 20px; 
+		}
+
+		#gMapHolder {
+			width:100%;
+			height:240px;
+			border-bottom:solid 2px black;
+		}
+
+		#success {
+			display: none;
+		}
+
+		#profilePicThumb {
+			padding: 10px;
+        	width: 50%;
+        	height: 50%;
+        	display: inline-block;
+        }
+        
+        #viewImage {
+        	text-decoration: none;
+        	display: flex;
+        	/*flex-direction: */
+        }
+
+        #viewImage p {
+        	text-align: left;
+        	color: black;
+        	font-size: 13px;
+
+        }
+
+		table { 
+			margin-left:auto; 
+			margin-right:auto; 
+			width:100%; 
+		}
+
+        td { width:50%; }
+        td:first-child { text-align:right; }
+        td:nth-child(2) { text-align:left; }

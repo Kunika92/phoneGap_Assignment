@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+<div data-role="page" id="home" data-theme="c"> 
+	<div data-role="header" data-position="fixed">		
+		<h1>CONTACTS</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" onclick="addContact()" class="ui-btn-active">Add Contact</a></li>
+				<li><a href="#" onclick="showEntries()">Contact List</a></li>
+				<li><a href="#" onclick="getLocation()">About</a></li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content" id="contact">
+		<a href="#" onclick="showEntries()" data-transition="slidefade" data-role="button" data-icon="bullets">Go to List of Your Contacts</a>
+		<form id="addContactForm">
+			<h1>Add New Contact</h1>
+			<div class="ui-field-contain">
+				<label for="name">Name:</label>
+				<input type="text" name="contactName" id="name" placeholder="Full Name" value="">
+			</div>
+			<div class="ui-field-contain">
+				<label for="contactNo">Contact Number:</label>
+				<input type="number" name="contactNum" id="contactNo" placeholder="(111) 111 1111" value="">
+			</div>
+			<div class="ui-field-contain">
+				<label for="email">Email:</label>
+				<input type="email" name="contactEmail" id="email" placeholder="example@email.com" value="">
+			</div>
+			<div class="ui-field-contain">
+				<a href="#" onclick="saveEntry()" data-role="button" >Submit</a>
+			</div>
+		</form>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="toolbar" data-type="footer" class="nav-glyphish-example" data-theme="b">
+	    	<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+				<ul>
+			        <li><a href="#home" id="chat" data-icon="home">Home</a></li>
+			        <li><a href="#" id="email" onclick="getPicture()" data-icon="camera">Profile Pic</a></li>
+			        <li><a href="#" id="skull" data-icon="gear">Settings</a></li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div> 
+
+
+<div data-role="page" id="contactList" data-theme="c"> 
+	<div data-role="header" data-position="fixed">
+		<h1>LIST OF CONTACT</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" onclick="addContact()">Add Contact</a></li>
+				<li><a href="#" onclick="showEntries()" class="ui-btn-active">Contact List</a></li>
+				<li><a href="#" onclick="getLocation()">About</a></li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content">
+		<a href="#" onclick="addContact()" data-transition="slidefade" data-role="button" data-icon="plus">Add Another Contact</a>
+		<p id="success">Contact Added Successfully!</p>
+		<h1>Search Contact</h1>
+		<div class="contactList">
+			<ul data-role="listview" id="contList" data-inset="true" data-filter="true">
+			</ul>
+		</div>
+		<a href="#" onclick="removeAll()" data-transition="slidefade" data-rel="back" data-role="button" data-icon="delete" data-theme="a">Delete List</a>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="toolbar" data-type="footer" class="nav-glyphish-example" data-theme="b">
+	    	<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+				<ul>
+			        <li><a href="#home" id="chat" data-icon="home">Home</a></li>
+			        <li><a href="#" id="email" onclick="getPicture()" data-icon="camera">Profile Pic</a></li>
+			        <li><a href="#" id="skull" data-icon="gear">Settings</a></li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div data-role="page" id="detailPage" data-theme="c"> 
+	<div data-role="header" data-position="fixed">
+		<h1>CONTACT DETAILS</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" onclick="addContact()">Add Contact</a></li>
+				<li><a href="#" onclick="showEntries()" class="ui-btn-active">Contact List</a></li>
+				<li><a href="#" onclick="getLocation()">About</a></li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content">
+		<form>
+			<h1 id="contactHeading">Name</h1>
+			<input type="hidden" name="contactId" id="conId">
+			<div class="ui-field-contain">
+				<label for="contactName">Name:</label>
+				<input type="text" name="name" id="contactName" placeholder="Text input" value="name" readonly>
+			</div>
+			<div class="ui-field-contain">
+				<label for="contactNumber">Phone:</label>
+				<input type="number" name="number" id="contactNumber" placeholder="(111) 111 1111" value="" readonly>
+			</div>
+			<div class="ui-field-contain">
+				<label for="contactEmail">Email:</label>
+				<input type="text" name="email" id="contactEmail" placeholder="Text input" value="email@email.com" readonly>
+			</div>
+		</form>
+		<a href="#" onclick="deleteContact()" data-transition="slidefade" data-rel="back" data-role="button" data-theme="a" data-icon="delete">Delete Contact</a>
+
+		<a href="#" onclick="showEntries()" data-transition="slidefade" data-role="button" data-icon="plus">Go back to Contact List
+		</a>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="toolbar" data-type="footer" class="nav-glyphish-example" data-theme="b">
+	    	<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+				<ul>
+			        <li><a href="#home" id="chat" data-icon="home">Home</a></li>
+			        <li><a href="#" id="email" onclick="getPicture()" data-icon="camera">Profile Pic</a></li>
+			        <li><a href="#" id="skull" data-icon="gear">Settings</a></li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div data-role="page" id="About" onResize="resizeMap()">
+	<div data-role="header" data-position="fixed">
+		<h1>YOUR LOCATION</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" onclick="addContact()"">Add Contact</a></li>
+				<li><a href="#" onclick="showEntries()">Contact List</a></li>
+				<li><a href="#" onclick="getLocation()" class="ui-btn-active">About</a></li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content">
+		<a href="#popupPhotoLandscape" id="viewImage" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+			<img src="img/call.png" id="profilePicThumb">
+			<div>
+				<p>Name: Phone Owner</p>
+				<p>Your Current Loction: </p>
+				<p id="paraId">...</p>
+			</div>
+		</a>
+		<div data-role="popup" id="popupPhotoLandscape" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+		    <a href="#" onclick="getLocation()" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img id="profilePicEnlarge" src="img/call.png" alt="Photo landscape">
+		</div>
+		<div id="gMapHolder"></div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="toolbar" data-type="footer" class="nav-glyphish-example" data-theme="b">
+	    	<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+				<ul>
+			        <li><a href="#home" id="chat" data-icon="home">Home</a></li>
+			        <li><a href="#" id="email" onclick="getPicture()" data-icon="camera">Profile Pic</a></li>
+			        <li><a href="#" id="skull" data-icon="gear">Settings</a></li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAkMTnOYyb5kKLBVgSo7faZTE3HBkXa0lo"></script>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
